@@ -1,0 +1,16 @@
+{
+  "name": "u-rpg",
+  "version": "0.0.1",
+  "description": "an upcoming untitled RPG",
+  "homepage": "https://github.com/grahambleon/u-rpg",
+  "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
+  "scripts": {
+    "test": "yarn workspaces foreach -pi run test"
+  },
+  "packageManager": "yarn@3.1.1",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
