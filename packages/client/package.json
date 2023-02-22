@@ -1,0 +1,9 @@
+{
+  "name": "u-rpg-client",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "echo 'hello client'"
+  },
+  "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
+  "packageManager": "yarn@3.1.1"
+}

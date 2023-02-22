@@ -1,0 +1,9 @@
+{
+  "name": "u-rpg-server",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "echo 'hello server'"
+  },
+  "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
+  "packageManager": "yarn@3.1.1"
+}
