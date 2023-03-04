@@ -1,0 +1,15 @@
+@import "../../styles/_spinner.scss";
+
+.container {
+  position: fixed;
+  width: 100%;
+  & .spinner {
+    animation: spinner 1.5s linear infinite;
+    border: 5px solid red;
+    border-radius: 50%;
+    border-top: 5px solid #2b2b2b;
+    height: 50px;
+    margin: 20px auto 0;
+    width: 50px;
+  }
+}
