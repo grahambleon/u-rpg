@@ -54,4 +54,4 @@ typings/
 .npm
 
 # Build Output
-packages/server/public/dist/*
+packages/server/public/dist/
