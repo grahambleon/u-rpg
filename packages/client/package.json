@@ -1,11 +1,11 @@
 {
-  "name": "u-rpg-client",
+  "name": "client",
   "version": "0.0.1",
   "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
   "main": "./src/index.tsx",
   "scripts": {
     "dev": "webpack serve --mode=development --open --hot",
-    "build": "webpack"
+    "build": "webpack --mode=production"
   },
   "packageManager": "yarn@3.1.1",
   "dependencies": {
