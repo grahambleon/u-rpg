@@ -21,6 +21,11 @@ module.exports = {
         context: ["/api"],
         target: "http://localhost:8000",
       },
+      {
+        context: ["/socket.io"],
+        target: "http://localhost:8000",
+        ws: true
+      }
     ],
     historyApiFallback: true,
   },
@@ -38,7 +43,7 @@ module.exports = {
         },
       },
       {
-        test: /\.tsx?$/,
+        test: /\.(ts|tsx)$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
