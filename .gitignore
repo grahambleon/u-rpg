@@ -52,3 +52,6 @@ typings/
 
 # Optional npm cache directory
 .npm
+
+# Build Output
+packages/server/public/dist/

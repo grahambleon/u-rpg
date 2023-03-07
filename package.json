@@ -2,15 +2,37 @@
   "name": "u-rpg",
   "version": "0.0.1",
   "description": "an upcoming untitled RPG",
+  "type": "module",
   "homepage": "https://github.com/grahambleon/u-rpg",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grahambleon/u-rpg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grahambleon/u-rpg/issues"
+  },
+  "keywords": [
+    "ttrpg",
+    "rpg",
+    "vtt",
+    "games"
+  ],
   "author": "Varun Nadgir, Tyler Brandt, Graham Gilpatric",
+  "license": "MIT",
   "scripts": {
-    "test": "yarn workspaces foreach -pi run test"
+    "dev": "NODE_ENV='development' yarn workspaces foreach -pi run dev",
+    "stage": "NODE_ENV='staging' yarn workspace client build && yarn workspace server start"
+  },
+  "engines": {
+    "node": ">=15.0.0"
   },
   "packageManager": "yarn@3.1.1",
   "workspaces": {
     "packages": [
       "packages/*"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
   }
 }
