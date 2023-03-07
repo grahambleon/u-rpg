@@ -1617,15 +1617,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/engine.io@npm:*":
-  version: 3.1.7
-  resolution: "@types/engine.io@npm:3.1.7"
-  dependencies:
-    "@types/node": "*"
-  checksum: 62b129eac3fca625cfae4591d4fab56872c44c1f7bb625af2f9e6c1bb28f8210276026e1007dc2da433ee5943972534078402515168135cc155a18c41dfec6a2
-  languageName: node
-  linkType: hard
-
 "@types/eslint-scope@npm:^3.7.3":
   version: 3.7.4
   resolution: "@types/eslint-scope@npm:3.7.4"
@@ -1668,15 +1659,6 @@ __metadata:
     "@types/qs": "*"
     "@types/range-parser": "*"
   checksum: dce580d16b85f207445af9d4053d66942b27d0c72e86153089fa00feee3e96ae336b7bedb31ed4eea9e553c99d6dd356ed6e0928f135375d9f862a1a8015adf2
-  languageName: node
-  linkType: hard
-
-"@types/express-session@npm:*":
-  version: 1.17.6
-  resolution: "@types/express-session@npm:1.17.6"
-  dependencies:
-    "@types/express": "*"
-  checksum: f5f2201d6b9568d8b9319735a4f6806b5ca144cee450274965aec54bc0a0331ba8bfffc1ad5addadf2e625769e13813a48cb5aea5b166fa05f474a12302dbb38
   languageName: node
   linkType: hard
 
@@ -1807,37 +1789,6 @@ __metadata:
     "@types/mime": "*"
     "@types/node": "*"
   checksum: 2e078bdc1e458c7dfe69e9faa83cc69194b8896cce57cb745016580543c7ab5af07fdaa8ac1765eb79524208c81017546f66056f44d1204f812d72810613de36
-  languageName: node
-  linkType: hard
-
-"@types/socket.io-parser@npm:*":
-  version: 2.2.1
-  resolution: "@types/socket.io-parser@npm:2.2.1"
-  dependencies:
-    "@types/node": "*"
-  checksum: 4ebe4881725c673fbb8fdbba0f88c7a87fde76e0a590a9de3171adfa999a7f94f9ecca3daafb53414a7d11d5c3fff8592c241562989e28113d7ecd746c799d08
-  languageName: node
-  linkType: hard
-
-"@types/socket.io.users@npm:0.0.32":
-  version: 0.0.32
-  resolution: "@types/socket.io.users@npm:0.0.32"
-  dependencies:
-    "@types/express": "*"
-    "@types/express-session": "*"
-    "@types/socket.io": 2.1.13
-  checksum: da9c8254c7b9ba24bcad7cb1a59d72872ca6da8c41d0a4cbe35ccc708da966ce9f3b4f483b6d70c47979821cf16ddbf15e85ee27bcb99d9eed64ea4d4065be16
-  languageName: node
-  linkType: hard
-
-"@types/socket.io@npm:2.1.13":
-  version: 2.1.13
-  resolution: "@types/socket.io@npm:2.1.13"
-  dependencies:
-    "@types/engine.io": "*"
-    "@types/node": "*"
-    "@types/socket.io-parser": "*"
-  checksum: 7c4748d30632dd54a7fc36ee1d51edb31014e78a13f2e4cb6a4a37bf5c6415472b2f827b36238d495a47ea677eb95261b1fdee68bfee6d9e4a3bd26077d88ace
   languageName: node
   linkType: hard
 
@@ -2636,7 +2587,6 @@ __metadata:
     "@babel/preset-typescript": ^7.21.0
     "@types/react": ^18.0.28
     "@types/react-dom": ^18.0.11
-    "@types/socket.io.users": 0.0.32
     autoprefixer: ^10.4.4
     babel-loader: ^8.2.3
     css-loader: ^6.6.0
@@ -3830,7 +3780,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:2.0.6, http-proxy-middleware@npm:^2.0.3":
+"http-proxy-middleware@npm:^2.0.3":
   version: 2.0.6
   resolution: "http-proxy-middleware@npm:2.0.6"
   dependencies:
@@ -5679,7 +5629,6 @@ __metadata:
     dotenv: ^16.0.3
     express: ^4.18.2
     http: 0.0.1-security
-    http-proxy-middleware: 2.0.6
     nodemon: ^2.0.21
     path: ^0.12.7
     socket.io: 4.6.1
