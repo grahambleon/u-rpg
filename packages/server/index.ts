@@ -4,12 +4,9 @@ import dotenv from "dotenv";
 import express from "express";
 import http from "http";
 import path from "path";
-import { createProxyMiddleware } from "http-proxy-middleware";
 import { fileURLToPath } from "url";
 import { Server } from "socket.io";
 import rootRouter from "./routes/rootRouter.js";
-
-// const { Server } = require("socket-io");
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
