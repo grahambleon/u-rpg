@@ -9,7 +9,7 @@ import React, {
 import { io, Socket } from "socket.io-client";
 
 export type SocketContextType = {
-  socketId?: string;
+  socket?: Socket;
 };
 
 export type SocketProviderProps = {
@@ -20,18 +20,11 @@ export const SocketContext = createContext<SocketContextType>({});
 
 export function SocketProvider({ children }: SocketProviderProps) {
   const [loading, setLoading] = useState<boolean>(true);
-  const [socketId, setSocketId] = useState<string>("");
   const socketRef = useRef<Socket>(io());
   console.log(socketRef.current);
 
-  useEffect(() => {
-    socketRef.current.on("connect", () => {
-      setSocketId(socketRef.current.id);
-    })
-  }, []);
-
   return (
-  <SocketContext.Provider value={{ socketId: socketRef.current.id }}>
+  <SocketContext.Provider value={{ socket: socketRef.current }}>
     {children}
   </SocketContext.Provider>
   );
