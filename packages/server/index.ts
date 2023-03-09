@@ -2,9 +2,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
+import http from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import { Server } from "socket.io";
 import rootRouter from "./routes/rootRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,4 +29,16 @@ app.use(express.json());
 
 app.use(rootRouter);
 
-app.listen(port, () => console.log(`Server listening on port ${port}`));
+const server = http.createServer(app);
+const io = new Server(server);
+
+io.on("connection", (socket) => { 
+  console.log(`User Connected: ${socket.id}`);
+  socket.on("chat message", (message) => {
+    const shortId = socket.id.slice(0,4);
+    io.emit("message broadcast", {text: message, id: shortId})
+  })
+});
+io.on("connect_error", (socket) => { console.log(`Connection Error: ${socket.id}`) });
+
+server.listen(port, () => console.log(`Server listening on port ${port}`));
