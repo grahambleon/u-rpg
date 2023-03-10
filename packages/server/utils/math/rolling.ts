@@ -20,11 +20,11 @@ type RandomRange = hasProb & {
   startFrom?: number;
 };
 
-type GetBinFromValue = hasValue & {
-  bins: number[];
+type GetSubRangeFromValue = hasValue & {
+  subRanges: number[];
 };
 
-type GetBins = hasProb & {
+type GetSubRanges = hasProb & {
   range: number;
 };
 
@@ -40,7 +40,7 @@ export function rollTable({ sourceTable, prob }: RollTable) {
   return sourceTable[
     getSubRangeFromValue({
       value: randomRange({ prob }),
-      bins: getSubRanges({ range: sourceTable.length, prob }),
+      subRanges: getSubRanges({ range: sourceTable.length, prob }),
     })
   ];
 }
@@ -49,7 +49,7 @@ export function placeInTable({ sourceTable, prob, value }: PlaceInTable) {
   return sourceTable[
     getSubRangeFromValue({
       value,
-      bins: getSubRanges({ range: sourceTable.length, prob }),
+      subRanges: getSubRanges({ range: sourceTable.length, prob }),
     })
   ];
 }
@@ -58,11 +58,11 @@ function randomRange({ prob, startFrom = 0 }: RandomRange) {
   return Math.floor(Math.random() * (prob - startFrom + 1)) + startFrom;
 }
 
-function getSubRangeFromValue({ value, bins }: GetBinFromValue) {
-  return bins.concat(value).sort().indexOf(value);
+function getSubRangeFromValue({ value, subRanges }: GetSubRangeFromValue) {
+  return subRanges.concat(value).sort().indexOf(value);
 }
 
-function getSubRanges({ range, prob }: GetBins) {
+function getSubRanges({ range, prob }: GetSubRanges) {
   return rollingMean(
     [...Array(range).keys()].map(
       (index) => (index * (prob - 1)) / (range - 1) + 1
