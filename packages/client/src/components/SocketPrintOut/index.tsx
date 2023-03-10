@@ -1,39 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSocket } from "../../contexts";
 
-type RollProps = {
-    choices: any[];
-};
-
 export default function SocketPrintOut() {
-    const { socket } = useSocket();
+  const { socket, isConnected } = useSocket();
+  const [thing, setThing] = useState<string>("");
 
-    function roll({ choices }: RollProps): string {
-        if (socket && socket.id) {
-            let accumulator = 0;
-            let digitCount = 0;
-
-            console.log(socket);
-            socket.id.replace(/\D/g, "").split("").forEach((digit) => { ++digitCount; const int = parseInt(digit); if (isNaN(int)) accumulator += 0; accumulator += parseInt(digit) });
-
-            let selector = (accumulator / digitCount) + 1;
-            if (isNaN(selector)) return "only letters for my friendan Brendan";
-            while (selector > choices.length - 1) {
-                selector /= choices.length
-            }
-            console.log(selector);
-            return choices[Math.round(selector)];
-        } else {
-            return "";
-        }
+  useEffect(() => {
+    async function fetchKey(socketId: string) {
+      try {
+        console.log("trying...");
+        const response = await fetch(`/api/math/pick?id=${socketId}`);
+        if (!response) throw new Error("error in fetch");
+        const json = await response.json();
+        setThing(json);
+      } catch {}
     }
 
-    const thing = roll({ choices: ["pizza", "gaming", "going in", "PEBBING!"] });
+    console.log("socketPrintOut");
+    console.log(socket);
+    if (socket.id && isConnected) {
+      console.log("has id");
+      fetchKey(socket.id);
+    }
+  }, [socket, isConnected]);
 
-    return (
-        <>
-            Hello I like pizza. <br />
-            {socket.id}
-        </>
-    );
+  return (
+    <>
+      {Boolean(thing) && `Hello I like ${thing}`}
+      <br />
+      {socket.id}
+    </>
+  );
 }

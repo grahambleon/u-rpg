@@ -1,12 +1,32 @@
-type GetBins = {
-  input: any[];
+interface hasProb {
   prob: number;
+}
+
+interface hasValue {
+  value: number;
+}
+
+interface hasSourceTable {
+  sourceTable: any[];
+}
+
+type ProbabilityTable = hasProb & hasSourceTable;
+
+type RollTable = ProbabilityTable;
+
+type PlaceInTable = ProbabilityTable & hasValue;
+
+type RandomRange = hasProb & {
+  startFrom?: number;
 };
 
-type GetBinFromValue = {
-    value: number;
-    bins: number[];
-}
+type GetBinFromValue = hasValue & {
+  bins: number[];
+};
+
+type GetBins = hasProb & {
+  range: number;
+};
 
 function rollingMean(arr: number[]) {
   let out = [];
@@ -16,15 +36,36 @@ function rollingMean(arr: number[]) {
   return out;
 }
 
-export function getBinFromValue({ value, bins }: GetBinFromValue) {
-    return bins.concat(value).sort().indexOf(value);
+export function rollTable({ sourceTable, prob }: RollTable) {
+  return sourceTable[
+    getSubRangeFromValue({
+      value: randomRange({ prob }),
+      bins: getSubRanges({ range: sourceTable.length, prob }),
+    })
+  ];
 }
 
-export function getBins({ input, prob }: GetBins) {
-  // const probSpace = [...Array(prob).keys()]; // [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  // const num = [...input.keys()]; // [0, 1, 2, 3]
-  // const optionSpace = input.map((element, index) => ((index * (prob - 1))/(input.length - 1)) + 1);
+export function placeInTable({ sourceTable, prob, value }: PlaceInTable) {
+  return sourceTable[
+    getSubRangeFromValue({
+      value,
+      bins: getSubRanges({ range: sourceTable.length, prob }),
+    })
+  ];
+}
+
+function randomRange({ prob, startFrom = 0 }: RandomRange) {
+  return Math.floor(Math.random() * (prob - startFrom + 1)) + startFrom;
+}
+
+function getSubRangeFromValue({ value, bins }: GetBinFromValue) {
+  return bins.concat(value).sort().indexOf(value);
+}
+
+function getSubRanges({ range, prob }: GetBins) {
   return rollingMean(
-    input.map((element, index) => (index * (prob - 1)) / (input.length - 1) + 1)
+    [...Array(range).keys()].map(
+      (index) => (index * (prob - 1)) / (range - 1) + 1
+    )
   );
 }
