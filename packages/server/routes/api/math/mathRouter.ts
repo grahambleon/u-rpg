@@ -15,10 +15,8 @@ mathRouter.get("/pick", (req, res) => {
     }, "9")
   );
 
-  if (isNaN(prob) || socketId === "")
-    return res
-      .status(200)
-      .send(JSON.stringify("my friendan Brendan"));
+  if (isNaN(value) || socketId === "")
+    return res.status(200).send(JSON.stringify("my friendan Brendan"));
 
   res.status(200).send(
     JSON.stringify(

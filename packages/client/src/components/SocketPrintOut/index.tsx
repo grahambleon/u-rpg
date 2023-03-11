@@ -13,7 +13,9 @@ export default function SocketPrintOut() {
         if (!response.ok) throw new Error("error in fetch");
         const json = await response.json();
         setThing(json);
-      } catch {}
+      } catch (error) {
+        console.error(error)
+      }
     }
 
     console.log("socketPrintOut");
