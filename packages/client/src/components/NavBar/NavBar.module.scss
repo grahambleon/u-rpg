@@ -1,0 +1,12 @@
+@import "../../styles/theme";
+
+.navBar {
+  position: absolute;
+  top: 0;
+  height: 3vh;
+  min-width: 100vw;
+  z-index: 1;
+  
+  box-sizing: border-box;
+  border-bottom: 1px solid;
+}

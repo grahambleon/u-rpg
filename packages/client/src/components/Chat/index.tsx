@@ -1,24 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { useSocket } from "../../contexts";
+
+import { useSocket, useTheme } from "../../contexts";
 import ChatBody from "./ChatBody";
 import ChatEntry from "./ChatEntry";
 
-export type Message = {text: string; id: string;};
+import styles from "./Chat.module.scss";
+
+export type Message = { text: string; id?: string; colorOverride?: Color; };
 
 export default function Chat() {
-    const { socket } = useSocket();
-    const [messages, setMessages] = useState<Message[]>([]);
+  const { socket } = useSocket();
+  const { theme } = useTheme();
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      id: "Server",
+      text: "Welcome to d'chat! Don't be nob!!!",
+      colorOverride: "orange"
+    },
+    {
+      text: "===================",
+    },
+  ]);
 
-    useEffect(() => {
-        socket.on("message broadcast", (message) => { console.log(message); console.log(messages); setMessages([...messages, message]) })
-    }, [messages]);
+  useEffect(() => {
+    socket.on("message broadcast", (message: Omit<Message, "isSender">) => {
+      const parsedMessage: Message = {
+        text: message.text,
+        id: message.id.slice(0, 4),
+        colorOverride: message.id === socket.id ? "lime" : undefined,
+      };
+      setMessages([...messages, parsedMessage]);
+    });
+  }, [messages]);
 
-    console.log("test");
-
-    return (
-        <section>
-            <ChatBody messages={messages} />
-            <ChatEntry />
-        </section>
-    )
-};
+  return (
+    <section className={`${styles.chat} ${styles[theme]}`} id="chat">
+      <div className={styles.wrapper}>
+        <ChatBody messages={messages} />
+        <ChatEntry />
+      </div>
+    </section>
+  );
+}

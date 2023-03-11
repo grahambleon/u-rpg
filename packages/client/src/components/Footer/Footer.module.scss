@@ -1,0 +1,14 @@
+@import "../../styles/theme";
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  height: 2vh;
+  min-width: 100vw;
+
+  box-sizing: border-box;
+  border-top: 1px solid;
+
+  display: flex;
+  align-items: center;
+}

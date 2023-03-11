@@ -1,0 +1,13 @@
+@import "../../../styles/theme";
+
+.chatEntry {
+    position: absolute;
+    bottom: 0;
+    height: 5%;
+    width: 100%;
+    display: flex;
+
+    .text {
+        width: 100%;
+    }
+}
