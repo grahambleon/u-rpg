@@ -10,7 +10,7 @@ export default function SocketPrintOut() {
       try {
         console.log("trying...");
         const response = await fetch(`/api/math/pick?id=${socketId}`);
-        if (!response) throw new Error("error in fetch");
+        if (!response.ok) throw new Error("error in fetch");
         const json = await response.json();
         setThing(json);
       } catch {}

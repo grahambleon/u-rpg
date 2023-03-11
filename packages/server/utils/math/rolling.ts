@@ -10,7 +10,7 @@ interface hasSourceTable {
   sourceTable: any[];
 }
 
-type ProbabilityTable = hasProb & hasSourceTable;
+interface ProbabilityTable extends hasProb, hasSourceTable {};
 
 type RollTable = ProbabilityTable;
 
