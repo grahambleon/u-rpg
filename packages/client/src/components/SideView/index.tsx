@@ -10,7 +10,7 @@ type SideViewProps = {
 
 export default function SideView({ children }: SideViewProps) {
   const { theme } = useTheme();
-  const [show, setShow] = useState<boolean>();
+  const [show, setShow] = useState<boolean>(true);
 
   return (
     <>
