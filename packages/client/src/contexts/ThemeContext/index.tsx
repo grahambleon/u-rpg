@@ -18,17 +18,15 @@ export type ThemeProviderProps = {
 export const ThemeContext = createContext<ThemeContextType>({});
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [themeKey, setThemeKey] = useState<ThemeKey>("dark");
+  const [theme, setTheme] = useState<ThemeKey>("dark");
 
   const changeTheme = useCallback(() => {
-    setThemeKey(themeKey === "dark" ? "light" : "dark");
-  }, [themeKey]);
-
-  console.log(themeKey);
+    setTheme(theme === "dark" ? "light" : "dark");
+  }, [theme]);
 
   return (
     <ThemeContext.Provider
-      value={{ changeTheme, theme: themeKey }}
+      value={{ changeTheme, theme: theme }}
     >
       {children}
     </ThemeContext.Provider>

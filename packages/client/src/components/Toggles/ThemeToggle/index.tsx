@@ -1,6 +1,7 @@
 import React from "react";
 
-import { useTheme } from "../../contexts";
+import { useTheme } from "../../../contexts";
+import SliderToggle from "../SliderToggle";
 
 import darkmode from "./images/darkmode.png";
 import lightmode from "./images/lightmode.png";
@@ -13,17 +14,18 @@ export default function ThemeToggle({}: ThemeToggleProps) {
   const { theme, changeTheme } = useTheme();
 
   return (
-    <>
-      <label className={styles.themeToggle}>
-        <input type="checkbox" onClick={changeTheme} />
-        <span className={`${styles.slider} ${styles[theme]}`}></span>
-      </label>
+    <div className={styles.themeToggle}>
       <span className={styles.labelImg}>
         <img
-          src={theme === "dark" ? darkmode : lightmode}
+          src={theme === "light" ? lightmode : darkmode}
           alt={`theme icon ${theme}mode`}
         />
       </span>
-    </>
+      <SliderToggle
+        className={styles[theme]}
+        onToggle={changeTheme}
+        on={theme === "light"}
+      />
+    </div>
   );
 }

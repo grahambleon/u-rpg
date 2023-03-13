@@ -1,0 +1,15 @@
+@import "../../../styles/theme";
+
+.menuToggle {
+  cursor: pointer;
+  user-select: none;
+
+  .label {
+    cursor: inherit;
+    .labelText {
+      cursor: inherit;
+
+      font-weight: 700;
+    }
+  }
+}

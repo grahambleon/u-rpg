@@ -6,7 +6,7 @@ import ChatEntry from "./ChatEntry";
 
 import styles from "./Chat.module.scss";
 
-export type Message = { text: string; id?: string; colorOverride?: Color; };
+export type Message = { text: string; id?: string; colorOverride?: Color };
 
 export default function Chat() {
   const { socket } = useSocket();
@@ -15,7 +15,7 @@ export default function Chat() {
     {
       id: "Server",
       text: "Welcome to d'chat! Don't be nob!!!",
-      colorOverride: "orange"
+      colorOverride: "orange",
     },
     {
       text: "===================",
@@ -35,10 +35,8 @@ export default function Chat() {
 
   return (
     <section className={`${styles.chat} ${styles[theme]}`} id="chat">
-      <div className={styles.wrapper}>
-        <ChatBody messages={messages} />
-        <ChatEntry />
-      </div>
+      <ChatBody messages={messages} />
+      <ChatEntry />
     </section>
   );
 }

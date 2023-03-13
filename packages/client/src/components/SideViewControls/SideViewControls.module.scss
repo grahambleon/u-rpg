@@ -1,0 +1,15 @@
+@import "../../styles/theme";
+
+.sideViewControls {
+  height: 100%;
+  width: 420px;
+  border-left: 1px solid;
+  box-sizing: border-box;
+
+  .wrapper {
+    margin: 2px 8%;
+
+    display: flex;
+    justify-content: space-between;
+  }
+}
