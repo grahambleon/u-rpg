@@ -24,8 +24,8 @@ module.exports = {
       {
         context: ["/socket.io"],
         target: "http://localhost:8000",
-        ws: true
-      }
+        ws: true,
+      },
     ],
     historyApiFallback: true,
   },
@@ -62,6 +62,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
       },
     ],
   },

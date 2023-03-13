@@ -1,0 +1,15 @@
+.themeToggle {
+  margin: 0 4px;
+  height: 2vh;
+
+  user-select: none;
+
+  .labelImg {
+    height: 2vh;
+    img {
+      width: 10px;
+      height: auto;
+      padding: 3px;
+    }
+  }
+}

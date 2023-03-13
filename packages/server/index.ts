@@ -32,13 +32,14 @@ app.use(rootRouter);
 const server = http.createServer(app);
 const io = new Server(server);
 
-io.on("connection", (socket) => { 
+io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
   socket.on("chat message", (message) => {
-    const shortId = socket.id.slice(0,4);
-    io.emit("message broadcast", {text: message, id: shortId})
-  })
+    io.emit("message broadcast", { text: message, id: socket.id });
+  });
 });
-io.on("connect_error", (socket) => { console.log(`Connection Error: ${socket.id}`) });
+io.on("connect_error", (socket) => {
+  console.log(`Connection Error: ${socket.id}`);
+});
 
 server.listen(port, () => console.log(`Server listening on port ${port}`));
