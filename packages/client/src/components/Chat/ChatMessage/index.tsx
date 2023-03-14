@@ -1,14 +1,22 @@
 import React from "react";
 
-type ChatMessageProps = { children: string }
+import styles from "./ChatMessage.module.scss";
 
-export default function ChatMessage({ children }: ChatMessageProps){
+type ChatMessageProps = { children: string; colorOverride?: Color };
 
-    return (
-        <div>
-            <p>
-                {children}
-            </p>
-        </div>
-    )
-};
+export default function ChatMessage({
+  children,
+  colorOverride,
+}: ChatMessageProps) {
+  return (
+    <div className={styles.chatMessage}>
+      <p
+        className={`${styles.text}${
+          colorOverride ? ` ${styles[colorOverride]}` : ""
+        }`}
+      >
+        {children}
+      </p>
+    </div>
+  );
+}

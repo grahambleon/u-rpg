@@ -1,8 +1,12 @@
 import React, { useCallback, useState, ChangeEvent, FormEvent } from "react";
-import { useSocket } from "../../../contexts";
+
+import { useSocket, useTheme } from "../../../contexts";
+
+import styles from "./ChatEntry.module.scss";
 
 export default function ChatEntry() {
   const { socket } = useSocket();
+  const { theme } = useTheme();
   const [typedText, setTypedText] = useState<string>("");
 
   const onFormSubmission = useCallback(
@@ -31,9 +35,17 @@ export default function ChatEntry() {
   );
 
   return (
-    <form onSubmit={onFormSubmission}>
-      <input onChange={onTextEntry} value={typedText} type="text" />
-      <input type="submit" />
+    <form
+      onSubmit={onFormSubmission}
+      className={`${styles.chatEntry} ${styles[theme]}`}
+    >
+      <input className={`${styles.submit} ${styles[theme]}`} type="submit" />
+      <input
+        className={styles.text}
+        onChange={onTextEntry}
+        value={typedText}
+        type="text"
+      />
     </form>
   );
 }
