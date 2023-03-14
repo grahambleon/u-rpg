@@ -12,15 +12,27 @@ export default function ChatEntry() {
   const onFormSubmission = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      socket.emit("chat message", typedText);
-      setTypedText("");
+      const text = typedText.trim();
+
+      if(text === "") {
+        return;
+      }
+
+      if (socket) {
+        socket.emit("chat message", text);
+        setTypedText("");
+      }
     },
-    [typedText]
+    [typedText, socket]
   );
-  const onTextEntry = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setTypedText(event.currentTarget.value);
-  }, []);
+  
+  const onTextEntry = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
+      setTypedText(event.currentTarget.value);
+    },
+    []
+  );
 
   return (
     <form
