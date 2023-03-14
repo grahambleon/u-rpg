@@ -14,7 +14,7 @@ export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "Server",
-      text: "Welcome to d'chat! Don't be nob!!!",
+      text: "Welcome to d'chat! Be the most pro that u can to do!!!",
       colorOverride: "orange",
     },
     {
