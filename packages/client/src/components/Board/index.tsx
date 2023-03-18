@@ -1,6 +1,9 @@
 import React from "react";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
 
-import TileRow from "./TileRow";
+import TilesMap from "./TilesMap";
+import { BoardMovementProvider } from "../../contexts";
 
 import styles from "./Board.module.scss";
 
@@ -9,12 +12,14 @@ type BoardProps = {
   width?: number;
 };
 
-export default function Board({ height = 100, width = 100 }: BoardProps) {
+export default function Board({ height = 10, width = 10 }: BoardProps) {
   return (
-    <section className={styles.board} id="board">
-      {[...Array(height).keys()].map((row) => (
-        <TileRow row={row} width={width} />
-      ))}
-    </section>
+    <DndProvider backend={HTML5Backend}>
+      <BoardMovementProvider height={height} width={width}>
+        <section className={styles.board} id="board">
+          <TilesMap />
+        </section>
+      </BoardMovementProvider>
+    </DndProvider>
   );
 }

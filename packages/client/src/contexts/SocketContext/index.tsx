@@ -1,6 +1,7 @@
 import React, {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -10,6 +11,8 @@ import { io, Socket } from "socket.io-client";
 export type SocketContextType = {
   socket?: Socket;
   isConnected?: boolean;
+  attemptMove?: (coords: Coordinates) => void;
+  sendChat?: (text: string) => void;
 };
 
 export type SocketProviderProps = {
@@ -35,8 +38,22 @@ export function SocketProvider({ children }: SocketProviderProps) {
     };
   }, []);
 
+  const attemptMove = useCallback((coords: Coordinates) => {
+    if (socket && socket.connected)
+      socket.emit("chat message", `Made a move to ${coords.x},${coords.y}`);
+  }, []);
+
+  const sendChat = useCallback(
+    (text: string) => {
+      if (socket && socket.connected) socket.emit("chat message", text);
+    },
+    [socket]
+  );
+
   return (
-    <SocketContext.Provider value={{ socket, isConnected }}>
+    <SocketContext.Provider
+      value={{ socket, isConnected, attemptMove, sendChat }}
+    >
       {children}
     </SocketContext.Provider>
   );

@@ -8,3 +8,4 @@ export { default as ServerError } from "./ServerError";
 export { default as SideView } from "./SideView";
 export { default as SocketPrintOut } from "./SocketPrintOut";
 export { MenuToggle, ThemeToggle } from "./Toggles";
+export { Token } from "./Tokens";

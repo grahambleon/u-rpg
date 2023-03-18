@@ -1,15 +1,72 @@
+$colors: (
+  blue: skyblue,
+  lime: limegreen,
+  orange: darkorange,
+  red: orangered,
+  yellow: yellow,
+);
+
+@mixin use-color($color) {
+  color: map-get($colors, $color);
+
+  &Background {
+    background-color: map-get($colors, $color);
+  }
+
+  &Overlay {
+    background-color: transparentize(map-get($colors, $color), 0.4);
+    border: 2px solid map-get($colors, $color);
+  }
+}
+
 .lime {
-  color: limegreen;
+  @include use-color(lime);
 }
 
 .red {
-  color: orangered;
+  @include use-color(red);
+}
+
+.yellow {
+  @include use-color(yellow);
 }
 
 .orange {
-  color: darkorange;
+  @include use-color(orange);
 }
 
 .blue {
-  color: skyblue;
+  @include use-color(blue);
 }
+
+// .limeBackground {
+//   background-color: $lime;
+// }
+
+// .redBackground {
+//   background-color: $red;
+// }
+
+// .orangeBackground {
+//   background-color: $orange;
+// }
+
+// .blueBackground {
+//   background-color: $blue;
+// }
+
+// .limeOverlay {
+//   background-color: $lime;
+// }
+
+// .redOverlay {
+//   background-color: $red;
+// }
+
+// .orangeOverlay {
+//   background-color: $orange;
+// }
+
+// .blueOverlay {
+//   background-color: $blue;
+// }
