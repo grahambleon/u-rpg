@@ -5,7 +5,7 @@ import { useSocket, useTheme } from "../../../contexts";
 import styles from "./ChatEntry.module.scss";
 
 export default function ChatEntry() {
-  const { socket } = useSocket();
+  const { socket, sendChat } = useSocket();
   const { theme } = useTheme();
   const [typedText, setTypedText] = useState<string>("");
 
@@ -14,25 +14,18 @@ export default function ChatEntry() {
       event.preventDefault();
       const text = typedText.trim();
 
-      if(text === "") {
-        return;
-      }
-
-      if (socket) {
-        socket.emit("chat message", text);
+      if (sendChat) {
+        sendChat(text);
         setTypedText("");
       }
     },
-    [typedText, socket]
+    [typedText, sendChat]
   );
-  
-  const onTextEntry = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      event.preventDefault();
-      setTypedText(event.currentTarget.value);
-    },
-    []
-  );
+
+  const onTextEntry = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    setTypedText(event.currentTarget.value);
+  }, []);
 
   return (
     <form

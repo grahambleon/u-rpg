@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 
-import { Chat } from "../";
 import { useTheme } from "../../contexts";
 
 import styles from "./AppBody.module.scss";

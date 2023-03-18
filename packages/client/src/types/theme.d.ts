@@ -1,3 +1,3 @@
 type ThemeKey = "dark" | "light";
 
-type Color = "lime" | "red" | "orange" | "blue";
+type Color = "blue" | "lime" | "orange" | "red" | "yellow";
