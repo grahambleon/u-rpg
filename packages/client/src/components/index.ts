@@ -4,6 +4,7 @@ export { default as Chat } from "./Chat";
 export { default as Footer } from "./Footer";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as NavBar } from "./NavBar";
+export { default as PopMenu } from "./PopMenu";
 export { default as ServerError } from "./ServerError";
 export { default as SideView } from "./SideView";
 export { default as SocketPrintOut } from "./SocketPrintOut";

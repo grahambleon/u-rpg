@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import { useDrop } from "react-dnd";
 
 import Overlay from "../../Overlay";
-import { useBoard, useSocket } from "../../../contexts";
+import { useBoard, useMouse, useSocket } from "../../../contexts";
 
 import itemTypes from "../../../constants/DnD-ItemTypes";
 
@@ -23,7 +23,8 @@ interface DraggedToken {
   y: number;
 }
 
-export default function Tile({ x, y, children }: TileProps) {
+export default function Tile({ x, y, children, id }: TileProps) {
+  const { contextMenu } = useMouse();
   const { attemptMove } = useSocket();
   const { clearOccupant, setOccupant } = useBoard();
   const [{ isOver, canDrop }, dropRef] = useDrop(
@@ -35,12 +36,12 @@ export default function Tile({ x, y, children }: TileProps) {
         const tan = Math.sqrt(absX * absX + absY * absY);
         return tan < 5;
       },
-      drop: (item) => {
+      drop: (item: DraggedToken) => {
         clearOccupant({ x: item.x, y: item.y });
         setOccupant({ x, y }, item.id);
         attemptMove({ x, y });
       }, // game.move
-      collect: (monitor: any) => ({
+      collect: (monitor) => ({
         isOver: !!monitor.isOver(),
         canDrop: !!monitor.canDrop(),
       }),
@@ -49,7 +50,21 @@ export default function Tile({ x, y, children }: TileProps) {
   );
 
   return (
-    <div className={styles.tile} ref={dropRef} role="Tile">
+    <div
+      className={styles.tile}
+      ref={dropRef}
+      role="Tile"
+      onContextMenu={(event) => {
+        contextMenu(event, {
+          type: "tile",
+          values: {
+            x,
+            y,
+            id,
+          },
+        });
+      }}
+    >
       {children}
       {isOver && !canDrop && <Overlay type="illegal" />}
       {!isOver && canDrop && <Overlay type="possible" />}
