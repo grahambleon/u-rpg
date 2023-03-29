@@ -17,6 +17,11 @@ $colors: (
     background-color: transparentize(map-get($colors, $color), 0.4);
     border: 2px solid map-get($colors, $color);
   }
+
+  &.focused {
+    border-radius: 100%;
+    box-shadow: 0 0 4px 4px map-get($colors, $color);
+  }
 }
 
 .lime {

@@ -1,6 +1,7 @@
 export { default as AppBody } from "./AppBody";
 export { default as ImageButton } from "./Buttons/ImageButton";
 export { default as Chat } from "./Chat";
+export { default as FocusedInfo } from "./FocusedInfo";
 export { default as Footer } from "./Footer";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as NavBar } from "./NavBar";

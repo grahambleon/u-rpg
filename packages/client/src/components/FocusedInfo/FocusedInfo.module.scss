@@ -1,0 +1,22 @@
+@import "../../styles/theme";
+
+.selectedInfo {
+  font-size: medium;
+  position: absolute;
+  bottom: 18px;
+  left: 0px;
+  width: 320px;
+  max-height: 180px;
+  box-sizing: border-box;
+  z-index: 4;
+
+  padding: 4px;
+  border: 1px solid;
+  border-left: none;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    margin: 0;
+  }
+}

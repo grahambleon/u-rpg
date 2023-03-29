@@ -24,7 +24,7 @@ interface DraggedToken {
 }
 
 export default function Tile({ x, y, children, id }: TileProps) {
-  const { contextMenu } = useMouse();
+  const { popMenu } = useMouse();
   const { attemptMove } = useSocket();
   const { clearOccupant, setOccupant } = useBoard();
   const [{ isOver, canDrop }, dropRef] = useDrop(
@@ -55,7 +55,7 @@ export default function Tile({ x, y, children, id }: TileProps) {
       ref={dropRef}
       role="Tile"
       onContextMenu={(event) => {
-        contextMenu(event, {
+        popMenu(event, {
           type: "tile",
           values: {
             x,
